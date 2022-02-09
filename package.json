@@ -1,0 +1,29 @@
+{
+  "name": "ev-messenger-bot",
+  "version": "1.0.0",
+  "description": "Twitter EV News Bot",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AibSyed/ev-messenger-bot.git"
+  },
+  "keywords": [
+    "twitter",
+    "bot",
+    "node js"
+  ],
+  "author": "Aib Syed <asyed1447@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AibSyed/ev-messenger-bot/issues"
+  },
+  "homepage": "https://github.com/AibSyed/ev-messenger-bot#readme",
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "nodejs": "^0.0.0",
+    "twitter-lite": "^1.1.0"
+  }
+}

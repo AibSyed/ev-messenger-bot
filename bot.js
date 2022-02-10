@@ -87,4 +87,10 @@ async function retweetBestTweet(id) {
         console.log(err);
     }
 }
+
 main();
+
+// run every 30 minutes
+setInterval(main, 1800000)
+
+

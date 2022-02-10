@@ -1,5 +1,4 @@
 require('dotenv').config()
-console.log(process.env)
 const helper = require('./helper.js');
 const TwitterLite = require('twitter-lite');
 

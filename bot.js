@@ -1,3 +1,5 @@
+console.log("EV-Messenger-Bot is running...")
+
 require('dotenv').config()
 const helper = require('./helper.js');
 const TwitterLite = require('twitter-lite');
@@ -26,6 +28,7 @@ const user = new TwitterLite({
 });
 
 async function main() {
+    console.log("Main script has started")
     let mode = Math.random();
     let userList = USER_LIST;
     let reducedHours = 1;
@@ -66,6 +69,7 @@ async function main() {
 }
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
+    console.log("Running Quote Best Tweet Function")
     const username = helper.getUsernameFromId(includes.users, bestTweetUser);
     if (username != undefined) {
         const status = helper.getStatus(bestTweetId, username);
@@ -79,6 +83,7 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 }
 
 async function retweetBestTweet(id) {
+    console.log("Running Best Tweet Function")
     try {
         console.log(id);
 
@@ -92,4 +97,3 @@ main();
 
 //run every 30 minutes
 setInterval(main, 1800000)
-

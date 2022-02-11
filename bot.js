@@ -34,22 +34,39 @@ const user = new TwitterLite({
     consumer_secret: TWITTER_API_SECRET,
 });
 
-let userLists = [
+let userListsOne = [
     FIRST_USER_LIST,
     SECOND_USER_LIST,
     THIRD_USER_LIST,
-    FOURTH_USER_LIST,
+    FOURTH_USER_LIST
+];
+
+let userListsTwo = [
     FIFTH_USER_LIST,
     SIXTH_USER_LIST,
     SEVENTH_USER_LIST,
     EIGHTH_USER_LIST
 ];
 
-let randomUserList = userLists[Math.floor(userLists.length * Math.random())];
+//pick random userlist based on mode and return result
+function pickRandomUserList() {
+    let userList
+    let mode = Math.random();
+    let randomUserListOne = userListsOne[Math.floor(userListsOne.length * Math.random())];
+    let randomUserListTwo = userListsTwo[Math.floor(userListsTwo.length * Math.random())];
+    if (mode > 0.5) {
+        userList = randomUserListOne;
+    } else {
+        userList = randomUserListTwo;
+    }
+    return userList
+}
 
 async function main() {
     console.log("Main script has started")
-    let userList = randomUserList;
+
+    //IIFE (Immediately Invoked Function Expression to get chosen user list)
+    let userList = (pickRandomUserList());
     let reducedHours = 1;
 
     const fullQuery =

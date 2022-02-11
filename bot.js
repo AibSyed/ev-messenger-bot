@@ -106,5 +106,5 @@ async function retweetBestTweet(id) {
 
 main();
 
-//run every 20 minutes
-setInterval(main, 1200000)
+//run every 10 minutes
+setInterval(main, 600000)

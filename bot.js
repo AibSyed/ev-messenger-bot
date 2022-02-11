@@ -4,14 +4,6 @@ require('dotenv').config()
 const helper = require('./helper.js');
 const TwitterLite = require('twitter-lite');
 
-const TWITTER_ACCESS_TOKEN_SECRET = process.env['TWITTER_ACCESS_TOKEN_SECRET'];
-const TWITTER_ACCESS_TOKEN = process.env['TWITTER_ACCESS_TOKEN'];
-const TWITTER_API_SECRET = process.env['TWITTER_API_SECRET'];
-const TWITTER_API_KEY = process.env['TWITTER_API_KEY'];
-const TWITTER_BEARER_TOKEN = process.env['TWITTER_BEARER_TOKEN'];
-const USER_LIST = process.env['USER_LIST'];
-const SECOND_USER_LIST = process.env['SECOND_USER_LIST'];
-
 // an authenticated client for this app
 const app = new TwitterLite({
     version: '2',
@@ -27,6 +19,25 @@ const user = new TwitterLite({
     consumer_secret: TWITTER_API_SECRET,
 });
 
+
+const TWITTER_ACCESS_TOKEN_SECRET = process.env['TWITTER_ACCESS_TOKEN_SECRET'];
+const TWITTER_ACCESS_TOKEN = process.env['TWITTER_ACCESS_TOKEN'];
+const TWITTER_API_SECRET = process.env['TWITTER_API_SECRET'];
+const TWITTER_API_KEY = process.env['TWITTER_API_KEY'];
+const TWITTER_BEARER_TOKEN = process.env['TWITTER_BEARER_TOKEN'];
+const USER_LIST = process.env['USER_LIST'];
+const SECOND_USER_LIST = process.env['SECOND_USER_LIST'];
+const THIRD_USER_LIST = process.env['THIRD_USER_LIST'];
+const FOURTH_USER_LIST = process.env['FOURTH_USER_LIST'];
+
+let userLists = [
+    SECOND_USER_LIST,
+    THIRD_USER_LIST,
+    FOURTH_USER_LIST
+];
+
+let randomUserList = userLists[Math.floor(userLists.length * Math.random())];
+
 async function main() {
     console.log("Main script has started")
     let mode = Math.random();
@@ -34,7 +45,7 @@ async function main() {
     let reducedHours = 1;
     if (mode > 0.5) {
         reducedHours = 1;
-        userList = SECOND_USER_LIST;
+        userList = randomUserList;
     }
 
     const fullQuery =

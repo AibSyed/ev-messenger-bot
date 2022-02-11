@@ -10,10 +10,14 @@ const TWITTER_ACCESS_TOKEN = process.env['TWITTER_ACCESS_TOKEN'];
 const TWITTER_API_SECRET = process.env['TWITTER_API_SECRET'];
 const TWITTER_API_KEY = process.env['TWITTER_API_KEY'];
 const TWITTER_BEARER_TOKEN = process.env['TWITTER_BEARER_TOKEN'];
-const USER_LIST = process.env['USER_LIST'];
+const FIRST_USER_LIST = process.env['FIRST_USER_LIST'];
 const SECOND_USER_LIST = process.env['SECOND_USER_LIST'];
 const THIRD_USER_LIST = process.env['THIRD_USER_LIST'];
 const FOURTH_USER_LIST = process.env['FOURTH_USER_LIST'];
+const FIFTH_USER_LIST = process.env['FIFTH_USER_LIST'];
+const SIXTH_USER_LIST = process.env['SIXTH_USER_LIST'];
+const SEVENTH_USER_LIST = process.env['SEVENTH_USER_LIST'];
+const EIGHTH_USER_LIST = process.env['EIGHTH_USER_LIST'];
 
 // an authenticated client for this app
 const app = new TwitterLite({
@@ -31,10 +35,14 @@ const user = new TwitterLite({
 });
 
 let userLists = [
-    USER_LIST,
+    FIRST_USER_LIST,
     SECOND_USER_LIST,
     THIRD_USER_LIST,
-    FOURTH_USER_LIST
+    FOURTH_USER_LIST,
+    FIFTH_USER_LIST,
+    SIXTH_USER_LIST,
+    SEVENTH_USER_LIST,
+    EIGHTH_USER_LIST
 ];
 
 let randomUserList = userLists[Math.floor(userLists.length * Math.random())];
@@ -54,7 +62,7 @@ async function main() {
 
     let params = {
         start_time: yesterday.toISOString(),
-        max_results: 10,
+        max_results: 20,
         'tweet.fields': 'public_metrics',
         expansions: 'author_id',
         'user.fields': 'id,username',

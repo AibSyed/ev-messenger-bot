@@ -36,16 +36,16 @@ const user = new TwitterLite({
 
 let userListsOne = [
     FIRST_USER_LIST,
-    SECOND_USER_LIST,
-    THIRD_USER_LIST,
-    FOURTH_USER_LIST
+    FIFTH_USER_LIST,
+    SIXTH_USER_LIST,
+    EIGHTH_USER_LIST
 ];
 
 let userListsTwo = [
-    FIFTH_USER_LIST,
-    SIXTH_USER_LIST,
+    SECOND_USER_LIST,
+    THIRD_USER_LIST,
     SEVENTH_USER_LIST,
-    EIGHTH_USER_LIST
+    FOURTH_USER_LIST
 ];
 
 //pick random userlist based on mode and return result

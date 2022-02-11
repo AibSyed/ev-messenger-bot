@@ -31,6 +31,7 @@ const user = new TwitterLite({
 });
 
 let userLists = [
+    USER_LIST,
     SECOND_USER_LIST,
     THIRD_USER_LIST,
     FOURTH_USER_LIST
@@ -40,13 +41,8 @@ let randomUserList = userLists[Math.floor(userLists.length * Math.random())];
 
 async function main() {
     console.log("Main script has started")
-    let mode = Math.random();
-    let userList = USER_LIST;
+    let userList = randomUserList;
     let reducedHours = 1;
-    if (mode > 0.5) {
-        reducedHours = 1;
-        userList = randomUserList;
-    }
 
     const fullQuery =
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';

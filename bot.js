@@ -35,19 +35,19 @@ const user = new TwitterLite({
     consumer_secret: TWITTER_API_SECRET,
 });
 
-let userListsOne = [
+let userGroupOne = [
     FIRST_USER_LIST,
     SIXTH_USER_LIST,
     EIGHTH_USER_LIST
 ];
 
-let userListsTwo = [
+let userGroupTwo = [
     SECOND_USER_LIST,
     SEVENTH_USER_LIST,
     FOURTH_USER_LIST
 ];
 
-let userListsThree = [
+let userGroupThree = [
     NINTH_USER_LIST,
     THIRD_USER_LIST,
     FIFTH_USER_LIST
@@ -58,27 +58,27 @@ function pickRandomUserList() {
     console.log("Picking random user list")
     let userList
     let mode = Math.random();
-    let randomUserListOne = userListsOne[Math.floor(userListsOne.length * Math.random())];
-    let randomUserListTwo = userListsTwo[Math.floor(userListsTwo.length * Math.random())];
-    let randomUserListThree = userListsThree[Math.floor(userListsThree.length * Math.random())];
+    let randomUserListOne = userGroupOne[Math.floor(userGroupOne.length * Math.random())];
+    let randomUserListTwo = userGroupTwo[Math.floor(userGroupTwo.length * Math.random())];
+    let randomUserListThree = userGroupThree[Math.floor(userGroupThree.length * Math.random())];
 
     if (mode > 0 && mode < 0.3) {
         userList = randomUserListOne;
-        console.log(userList + " is the winner")
+        console.log('Picking from random user list from group 1')
     }
     else if (mode > 0.3 && mode < 0.6) {
         userList = randomUserListTwo;
-        console.log(userList + " is the winner")
+        console.log('Picking from random user list from group 2')
     }
     else {
         userList = randomUserListThree
-        console.log(userList + " is the winner")
+        console.log('Picking from random user list from group 3')
     }
     return userList
 }
 
 async function main() {
-    console.log("Main script has started")
+    console.log('Main script has started')
 
     //IIFE (Immediately Invoked Function Expression to get chosen user list)
     let userList = (pickRandomUserList());
@@ -100,6 +100,8 @@ async function main() {
         'user.fields': 'id,username',
         query: fullQuery,
     };
+
+    console.log(params)
 
     const { meta, data, includes } = await app.get(
         'tweets/search/recent',
@@ -123,6 +125,7 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
         console.log(status);
         try {
             const { data } = await user.post('statuses/update', { status: status });
+            console.log(data);
         } catch (err) {
             console.log(err);
         }
@@ -130,11 +133,11 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 }
 
 async function retweetBestTweet(id) {
-    console.log("Running Best Tweet Function")
+    console.log("Running Best Retweet Function")
     try {
         console.log(id);
-
         const { data } = await user.post('statuses/retweet/' + id);
+        console.log(data);
     } catch (err) {
         console.log(err);
     }

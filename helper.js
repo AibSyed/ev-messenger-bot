@@ -41,6 +41,7 @@ const getStatus = function (lastTweetId, tweetId, user) {
     ];
     let randomComment = comments[Math.floor(comments.length * Math.random())];
     if (lastTweetId == tweetId) {
+        console.log(lastTweetId + 'equals' + tweetId);
         return
     }
     else { return randomComment + "\nhttps://twitter.com/" + user + "/status/" + tweetId }

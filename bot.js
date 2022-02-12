@@ -55,7 +55,7 @@ let userGroupThree = [
 
 //pick random userlist based on mode value and return result
 function pickRandomUserList() {
-    console.log("Picking random user list")
+    console.log("Running function to grab random user list")
     let userList
     let mode = Math.random();
     let randomUserListOne = userGroupOne[Math.floor(userGroupOne.length * Math.random())];
@@ -64,15 +64,15 @@ function pickRandomUserList() {
 
     if (mode > 0 && mode < 0.3) {
         userList = randomUserListOne;
-        console.log('Picking from random user list from group 1')
+        console.log('Picking random user list from group 1')
     }
     else if (mode > 0.3 && mode < 0.6) {
         userList = randomUserListTwo;
-        console.log('Picking from random user list from group 2')
+        console.log('Picking random user list from group 2')
     }
     else {
         userList = randomUserListThree
-        console.log('Picking from random user list from group 3')
+        console.log('Picking random user list from group 3')
     }
     return userList
 }
@@ -100,8 +100,6 @@ async function main() {
         'user.fields': 'id,username',
         query: fullQuery,
     };
-
-    console.log(params)
 
     const { meta, data, includes } = await app.get(
         'tweets/search/recent',
@@ -143,5 +141,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every 12.5 minutes
-setInterval(main, 750000);
+//run every 10 minutes
+setInterval(main, 600000);

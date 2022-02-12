@@ -1,5 +1,5 @@
 const getBestTweet = function (data) {
-    let bestTweetId = 0, bestTweetPoints = 0, bestTweetUser = '', lastTweetId = 0
+    let bestTweetId = 0, bestTweetPoints = 0, bestTweetUser = ''
     data.forEach((tweet) => {
         const metrics = tweet.public_metrics
         let currentTweetPoints = metrics.like_count + metrics.retweet_count * 5 + metrics.quote_count * 2 + metrics.reply_count * 2
@@ -7,11 +7,10 @@ const getBestTweet = function (data) {
             bestTweetPoints = currentTweetPoints
             bestTweetId = tweet.id
             bestTweetUser = tweet.author_id
-            lastTweetId = tweet.id_str
         }
     })
 
-    return { bestTweetId: bestTweetId, bestTweetUser: bestTweetUser, lastTweetId: lastTweetId }
+    return { bestTweetId: bestTweetId, bestTweetUser: bestTweetUser }
 }
 
 const getFromClauses = function (userList) {
@@ -24,7 +23,7 @@ const getFromClauses = function (userList) {
     return fromClause
 }
 
-const getStatus = function (lastTweetId, tweetId, user) {
+const getStatus = function (tweetId, user) {
     console.log(lastTweetId)
     let comments = [
         '@' + user + ' shared the following post...',
@@ -40,11 +39,7 @@ const getStatus = function (lastTweetId, tweetId, user) {
         "If you haven't aleady, give @" + user + ' a follow for more great posts!',
     ];
     let randomComment = comments[Math.floor(comments.length * Math.random())];
-    if (lastTweetId == tweetId) {
-        console.log(lastTweetId + 'equals' + tweetId);
-        return
-    }
-    else { return randomComment + "\nhttps://twitter.com/" + user + "/status/" + tweetId }
+    return randomComment + "\nhttps://twitter.com/" + user + "/status/" + tweetId
 }
 
 const getUsernameFromId = function (users, id) {

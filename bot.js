@@ -123,7 +123,6 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
         console.log(status);
         try {
             const { data } = await user.post('statuses/update', { status: status });
-            console.log(data);
         } catch (err) {
             console.log(err);
         }
@@ -133,13 +132,11 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 async function retweetBestTweet(id) {
     console.log("Running Best Retweet Function")
     try {
-        console.log(id);
         const { data } = await user.post('statuses/retweet/' + id);
-        console.log(data);
     } catch (err) {
         console.log(err);
     }
 }
 
 //run every 10 minutes
-setInterval(main, 300000);
+setInterval(main, 600000);

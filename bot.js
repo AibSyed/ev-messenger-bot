@@ -18,6 +18,7 @@ const FIFTH_USER_LIST = process.env['FIFTH_USER_LIST'];
 const SIXTH_USER_LIST = process.env['SIXTH_USER_LIST'];
 const SEVENTH_USER_LIST = process.env['SEVENTH_USER_LIST'];
 const EIGHTH_USER_LIST = process.env['EIGHTH_USER_LIST'];
+const NINTH_USER_LIST = process.env['NINTH_USER_LIST'];
 
 // an authenticated client for this app
 const app = new TwitterLite({
@@ -36,28 +37,42 @@ const user = new TwitterLite({
 
 let userListsOne = [
     FIRST_USER_LIST,
-    FIFTH_USER_LIST,
     SIXTH_USER_LIST,
     EIGHTH_USER_LIST
 ];
 
 let userListsTwo = [
     SECOND_USER_LIST,
-    THIRD_USER_LIST,
     SEVENTH_USER_LIST,
     FOURTH_USER_LIST
 ];
 
-//pick random userlist based on mode and return result
+let userListsThree = [
+    NINTH_USER_LIST,
+    THIRD_USER_LIST,
+    FIFTH_USER_LIST
+]
+
+//pick random userlist based on mode value and return result
 function pickRandomUserList() {
+    console.log("Picking random user list")
     let userList
     let mode = Math.random();
     let randomUserListOne = userListsOne[Math.floor(userListsOne.length * Math.random())];
     let randomUserListTwo = userListsTwo[Math.floor(userListsTwo.length * Math.random())];
-    if (mode > 0.5) {
+    let randomUserListThree = userListsThree[Math.floor(userListsThree.length * Math.random())];
+
+    if (mode > 0 && mode < 0.3) {
         userList = randomUserListOne;
-    } else {
+        console.log(userList + " is the winner")
+    }
+    else if (mode > 0.3 && mode < 0.6) {
         userList = randomUserListTwo;
+        console.log(userList + " is the winner")
+    }
+    else {
+        userList = randomUserListThree
+        console.log(userList + " is the winner")
     }
     return userList
 }
@@ -79,7 +94,7 @@ async function main() {
 
     let params = {
         start_time: yesterday.toISOString(),
-        max_results: 20,
+        max_results: 15,
         'tweet.fields': 'public_metrics',
         expansions: 'author_id',
         'user.fields': 'id,username',
@@ -92,7 +107,7 @@ async function main() {
     );
     if (meta.result_count > 0) {
         const { bestTweetId, bestTweetUser } = helper.getBestTweet(data);
-        if (Math.random() > 0.6) {
+        if (Math.random() > 0.2) {
             quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
         } else {
             retweetBestTweet(bestTweetId);
@@ -125,7 +140,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-main();
-
 //run every 15 minutes
-setInterval(main, 900000)
+setInterval(main, 300000);

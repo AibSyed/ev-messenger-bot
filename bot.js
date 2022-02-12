@@ -51,7 +51,7 @@ let userGroupThree = [
     NINTH_USER_LIST,
     THIRD_USER_LIST,
     FIFTH_USER_LIST
-]
+];
 
 //pick random userlist based on mode value and return result
 function pickRandomUserList() {
@@ -82,18 +82,17 @@ async function main() {
 
     //IIFE (Immediately Invoked Function Expression to get chosen user list)
     let userList = (pickRandomUserList());
-    let reducedHours = 1;
 
     const fullQuery =
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
-    let yesterday = new Date();
-    yesterday.setDate(yesterday.getDate());
-    yesterday.setHours(yesterday.getHours() - reducedHours);
-
+    let pastTenMinutes = new Date();
+    let reducedMinutes = 5;
+    pastTenMinutes.setDate(pastTenMinutes.getDate());
+    pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 
     let params = {
-        start_time: yesterday.toISOString(),
+        start_time: pastTenMinutes.toISOString(),
         max_results: 15,
         'tweet.fields': 'public_metrics',
         expansions: 'author_id',
@@ -138,5 +137,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every 10 minutes
-setInterval(main, 600000);
+//run every 5 minutes
+setInterval(main, 300000);

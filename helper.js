@@ -24,7 +24,6 @@ const getFromClauses = function (userList) {
 }
 
 const getStatus = function (tweetId, user) {
-    console.log(lastTweetId)
     let comments = [
         '@' + user + ' shared the following post...',
         'The latest update from @' + user + ':',

@@ -106,6 +106,7 @@ async function main() {
     );
     if (meta.result_count > 0) {
         const { bestTweetId, bestTweetUser } = helper.getBestTweet(data);
+        console.log('Found results that match criteria, determining whether to quote tweet, or retweet')
         if (Math.random() > 0.2) {
             quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
         } else {

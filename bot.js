@@ -87,7 +87,7 @@ async function main() {
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
     let pastTenMinutes = new Date();
-    let reducedMinutes = 5;
+    let reducedMinutes = 10;
     pastTenMinutes.setDate(pastTenMinutes.getDate());
     pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 

@@ -112,6 +112,9 @@ async function main() {
             retweetBestTweet(bestTweetId);
         }
     }
+    else {
+        console.log('No matching results to display at this time')
+    }
 }
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {

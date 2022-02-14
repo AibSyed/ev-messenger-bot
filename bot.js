@@ -19,6 +19,7 @@ const SIXTH_USER_LIST = process.env['SIXTH_USER_LIST'];
 const SEVENTH_USER_LIST = process.env['SEVENTH_USER_LIST'];
 const EIGHTH_USER_LIST = process.env['EIGHTH_USER_LIST'];
 const NINTH_USER_LIST = process.env['NINTH_USER_LIST'];
+const TENTH_USER_LIST = process.env['TENTH_USER_LIST'];
 
 //an authenticated client for this app
 const app = new TwitterLite({
@@ -35,22 +36,29 @@ const user = new TwitterLite({
     consumer_secret: TWITTER_API_SECRET,
 });
 
-let userGroupOne = [
+let userGroup1 = [
     FIRST_USER_LIST,
-    SIXTH_USER_LIST,
-    EIGHTH_USER_LIST
+    SIXTH_USER_LIST
 ];
 
-let userGroupTwo = [
+let userGroup2 = [
     SECOND_USER_LIST,
-    SEVENTH_USER_LIST,
+    SEVENTH_USER_LIST
+];
+
+let userGroup3 = [
+    NINTH_USER_LIST,
+    FIFTH_USER_LIST
+];
+
+let userGroup4 = [
+    EIGHTH_USER_LIST,
     FOURTH_USER_LIST
 ];
 
-let userGroupThree = [
-    NINTH_USER_LIST,
+let userGroup5 = [
     THIRD_USER_LIST,
-    FIFTH_USER_LIST
+    TENTH_USER_LIST
 ];
 
 //pick random userlist based on mode value and return result
@@ -58,21 +66,31 @@ function pickRandomUserList() {
     console.log("Running function to grab random user list")
     let userList
     let mode = Math.random();
-    let randomUserListOne = userGroupOne[Math.floor(userGroupOne.length * Math.random())];
-    let randomUserListTwo = userGroupTwo[Math.floor(userGroupTwo.length * Math.random())];
-    let randomUserListThree = userGroupThree[Math.floor(userGroupThree.length * Math.random())];
+    let randomUserList1 = userGroup1[Math.floor(userGroup1.length * Math.random())];
+    let randomUserList2 = userGroup2[Math.floor(userGroup2.length * Math.random())];
+    let randomUserList3 = userGroup3[Math.floor(userGroup3.length * Math.random())];
+    let randomUserList4 = userGroup4[Math.floor(userGroup4.length * Math.random())];
+    let randomUserList5 = userGroup5[Math.floor(userGroup5.length * Math.random())];
 
-    if (mode > 0 && mode < 0.3) {
-        userList = randomUserListOne;
+    if (mode > 0 && mode < 0.2) {
+        userList = randomUserList1;
         console.log('Picking random user list from group 1')
     }
-    else if (mode > 0.3 && mode < 0.6) {
-        userList = randomUserListTwo;
+    else if (mode > 0.2 && mode < 0.4) {
+        userList = randomUserList2;
         console.log('Picking random user list from group 2')
     }
-    else {
-        userList = randomUserListThree
+    else if (mode > 0.4 && mode < 0.6) {
+        userList = randomUserList3;
         console.log('Picking random user list from group 3')
+    }
+    else if (mode > 0.6 && mode < 0.8) {
+        userList = randomUserList4;
+        console.log('Picking random user list from group 4')
+    }
+    else {
+        userList = randomUserList5
+        console.log('Picking random user list from group 5')
     }
     return userList
 }
@@ -87,7 +105,7 @@ async function main() {
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
     let pastTenMinutes = new Date();
-    let reducedMinutes = 5;
+    let reducedMinutes = 30;
     pastTenMinutes.setDate(pastTenMinutes.getDate());
     pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 
@@ -141,5 +159,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every minute
-setInterval(main, 60000);
+//run every 5 minutes
+setInterval(main, 300000);

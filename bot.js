@@ -92,11 +92,12 @@ function pickRandomUserList() {
         userList = randomUserList5
         console.log('Picking random user list from group 5')
     }
+    console.log(userList + ' is the winner.')
     return userList
 }
 
-async function main() {
-    console.log('Main script has started')
+async function botScript() {
+    console.log('Bot script has started')
 
     //IIFE (Immediately Invoked Function Expression to get chosen user list)
     let userList = (pickRandomUserList());
@@ -125,14 +126,15 @@ async function main() {
     if (meta.result_count > 0) {
         const { bestTweetId, bestTweetUser } = helper.getBestTweet(data);
         console.log('Found results that match criteria, determining whether to quote tweet, or retweet')
-        if (Math.random() > 0.2) {
+        if (Math.random() > 0.1) {
             quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
         } else {
             retweetBestTweet(bestTweetId);
         }
     }
     else {
-        console.log('No matching results to display at this time')
+        console.log('No matching results to display at this time, running bot script again until matching results are found.')
+            (botScript());
     }
 }
 
@@ -142,6 +144,7 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
     if (username != undefined) {
         const status = helper.getStatus(bestTweetId, username);
         console.log(status);
+        console.log(bestTweetId)
         try {
             const { data } = await user.post('statuses/update', { status: status });
         } catch (err) {
@@ -159,5 +162,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every 5 minutes
-setInterval(main, 300000);
+//run every minute
+setInterval(botScript, 60000);

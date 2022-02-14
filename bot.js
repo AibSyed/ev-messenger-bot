@@ -87,7 +87,7 @@ async function main() {
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
     let pastTenMinutes = new Date();
-    let reducedMinutes = 20;
+    let reducedMinutes = 5;
     pastTenMinutes.setDate(pastTenMinutes.getDate());
     pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 
@@ -141,5 +141,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every 5 minutes
-setInterval(main, 300000);
+//run every 2.5 minutes
+setInterval(main, 150000);

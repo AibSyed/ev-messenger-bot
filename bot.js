@@ -134,7 +134,7 @@ async function botScript() {
     }
     else {
         console.log('No matching results to display at this time, running bot script again until matching results are found.')
-            ((botScript()));
+            (botScript());
     }
 }
 

@@ -20,14 +20,14 @@ const SEVENTH_USER_LIST = process.env['SEVENTH_USER_LIST'];
 const EIGHTH_USER_LIST = process.env['EIGHTH_USER_LIST'];
 const NINTH_USER_LIST = process.env['NINTH_USER_LIST'];
 
-// an authenticated client for this app
+//an authenticated client for this app
 const app = new TwitterLite({
     version: '2',
     extension: false,
     bearer_token: TWITTER_BEARER_TOKEN,
 });
 
-// an authenticated client for the bot user
+//an authenticated client for the bot user
 const user = new TwitterLite({
     access_token_key: TWITTER_ACCESS_TOKEN,
     access_token_secret: TWITTER_ACCESS_TOKEN_SECRET,
@@ -141,5 +141,5 @@ async function retweetBestTweet(id) {
     }
 }
 
-//run every 2.5 minutes
-setInterval(main, 150000);
+//run every minute
+setInterval(main, 60000);

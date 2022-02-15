@@ -120,12 +120,7 @@ async function botScript() {
 			retweetBestTweet(bestTweetId);
 		}
 	} else {
-		console.log(
-			'No matching results to display at this time, running bot script again until matching results are found.'
-		);
-		for (i = 0; i < 3; i++) {
-			botScript();
-		}
+		console.log('No matching results to display at this time.');
 	}
 }
 

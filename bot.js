@@ -126,7 +126,7 @@ async function botScript() {
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 	console.log('Running Quote Best Tweet Function');
-	console.log('this is the best tweet id: ' { bestTweetId });
+	console.log('this is the best tweet id: ' + { bestTweetId });
 	const username = helper.getUsernameFromId(includes.users, bestTweetUser);
 	if (username != undefined) {
 		const status = helper.getStatus(bestTweetId, username);

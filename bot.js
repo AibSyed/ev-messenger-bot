@@ -92,7 +92,7 @@ async function botScript() {
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
 	let pastTenMinutes = new Date();
-	let reducedMinutes = 300;
+	let reducedMinutes = 1200;
 	pastTenMinutes.setDate(pastTenMinutes.getDate());
 	pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 

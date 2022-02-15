@@ -62,16 +62,16 @@ function pickRandomUserList() {
 	let randomUserList5 =
 		userGroup5[Math.floor(userGroup5.length * Math.random())];
 
-	if (mode > 0 && mode < 0.2) {
+	if (mode > 0 && mode <= 0.2) {
 		userList = randomUserList1;
 		console.log('Picking random user list from group 1');
-	} else if (mode > 0.2 && mode < 0.4) {
+	} else if (mode > 0.2 && mode <= 0.4) {
 		userList = randomUserList2;
 		console.log('Picking random user list from group 2');
-	} else if (mode > 0.4 && mode < 0.6) {
+	} else if (mode > 0.4 && mode <= 0.6) {
 		userList = randomUserList3;
 		console.log('Picking random user list from group 3');
-	} else if (mode > 0.6 && mode < 0.8) {
+	} else if (mode > 0.6 && mode <= 0.8) {
 		userList = randomUserList4;
 		console.log('Picking random user list from group 4');
 	} else {

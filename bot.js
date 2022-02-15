@@ -126,11 +126,11 @@ async function botScript() {
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 	console.log('Running Quote Best Tweet Function');
+	console.log('this is the best tweet id: ' { bestTweetId });
 	const username = helper.getUsernameFromId(includes.users, bestTweetUser);
 	if (username != undefined) {
 		const status = helper.getStatus(bestTweetId, username);
 		console.log(status);
-		console.log(bestTweetId);
 		try {
 			const { data } = await user.post('statuses/update', { status: status });
 		} catch (err) {
@@ -149,4 +149,4 @@ async function retweetBestTweet(id) {
 }
 
 //run every 5 minutes
-setInterval(botScript, 300000);
+setInterval(botScript, 60000);

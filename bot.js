@@ -123,8 +123,18 @@ async function botScript() {
 		console.log(
 			'No matching results to display at this time, running bot script again until matching results are found.'
 		);
-		//run bot again and retry for 1 minute
-		setInterval(botScript, 60000);
+		//run bot again and retry 7 times
+		let maxAttempts = 7;
+		for (i = 0; i < maxAttempts; i++) {
+			botScript();
+			console.log(
+				'At ' + i + 'attempts.' + maxAttempts - i + ' attempts left.'
+			);
+			if (i == maxAttempts) {
+				i = 0;
+				return;
+			}
+		}
 	}
 }
 

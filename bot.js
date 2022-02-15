@@ -92,7 +92,7 @@ async function botScript() {
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
 	let pastTenMinutes = new Date();
-	let reducedMinutes = 1200;
+	let reducedMinutes = 30;
 	pastTenMinutes.setDate(pastTenMinutes.getDate());
 	pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 
@@ -126,14 +126,11 @@ async function botScript() {
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 	console.log('Running Quote Best Tweet Function');
-	var lastTweetId;
-	console.log('this is the last tweet id: ' + lastTweetId);
 	console.log('this is the best tweet id: ' + bestTweetId);
 	const username = helper.getUsernameFromId(includes.users, bestTweetUser);
-	if (username != undefined && bestTweetId != lastTweetId) {
+	if (username != undefined) {
 		const status = helper.getStatus(bestTweetId, username);
 		console.log(status);
-		lastTweetId = bestTweetId;
 		try {
 			const { data } = await user.post('statuses/update', { status: status });
 		} catch (err) {
@@ -152,4 +149,4 @@ async function retweetBestTweet(id) {
 }
 
 //run every 5 minutes
-setInterval(botScript, 60000);
+setInterval(botScript, 300000);

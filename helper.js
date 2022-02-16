@@ -26,16 +26,16 @@ const getFromClauses = function (userList) {
 const getStatus = function (tweetId, user) {
     let comments = [
         user + ' shared the following post...',
-        'The latest update from' + user + ':',
-        'Check out' + user + "'s latest post! ⚡",
-        "Here's the latest from" + user + ':',
+        'The latest update from ' + user + ':',
+        'Check out ' + user + "'s latest post! ⚡",
+        "Here's the latest from " + user + ':',
         user,
-        'A new post from' + user + ':',
-        'What do you think about this post from' + user + '?',
-        "Here's what" + user + " has been up to:",
-        'What are your thoughts on this post from' + user + '?',
-        'Another EV update from' + user + '!',
-        "If you haven't aleady, give" + user + ' a follow for more great posts!',
+        'A new post from ' + user + ':',
+        'What do you think about this post from ' + user + '?',
+        "Here's what " + user + " has been up to:",
+        'What are your thoughts on this post from ' + user + '?',
+        'Another EV update from ' + user + '!',
+        "If you haven't aleady, give " + user + ' a follow for more great posts!',
     ];
     let randomComment = comments[Math.floor(comments.length * Math.random())];
     return randomComment + "\nhttps://twitter.com/" + user + "/status/" + tweetId

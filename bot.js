@@ -92,7 +92,7 @@ async function botScript() {
         '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
     let pastTenMinutes = new Date();
-    let reducedMinutes = 10;
+    let reducedMinutes = 45;
     pastTenMinutes.setDate(pastTenMinutes.getDate());
     pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
 
@@ -149,4 +149,4 @@ async function retweetBestTweet(id) {
 }
 
 //run every 10 minutes
-setInterval(botScript, 600000);
+setInterval(botScript, 900000);

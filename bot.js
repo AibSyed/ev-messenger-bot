@@ -1,4 +1,4 @@
-console.log('EV-Messenger-Bot is running...');
+console.log('Bot is running...');
 
 //import dependencies
 require('dotenv').config();
@@ -32,7 +32,7 @@ const user = new TwitterLite({
 
 //main script
 async function botScript() {
-	console.log('Bot script has started');
+	console.log('Bot script has started.');
 	//IIFE (Immediately Invoked Function Expression to get chosen user list)
 	let userList = picker.pickRandomUserList();
 
@@ -60,7 +60,7 @@ async function botScript() {
 	if (meta.result_count > 0) {
 		const { bestTweetId, bestTweetUser } = helper.getBestTweet(data);
 		console.log(
-			'Found results that match criteria, determining whether to quote tweet, or retweet'
+			'Found results that match criteria, determining whether to quote tweet, or retweet.'
 		);
 		if (Math.random() > 0.1) {
 			quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
@@ -73,12 +73,14 @@ async function botScript() {
 }
 
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
-	console.log('Running Quote Best Tweet Function');
-	console.log('this is the best tweet id: ' + bestTweetId);
+	console.log('Running Quote Best Tweet Function.');
+	console.log('Best tweet id: ' + bestTweetId);
 	const username = helper.getUsernameFromId(includes.users, bestTweetUser);
 	if (username != undefined) {
 		const status = helper.getStatus(bestTweetId, username);
-		console.log(status);
+		console.log(
+			'Tweeting the following status for ' + username + ': ' + status
+		);
 		try {
 			const { data } = await user.post('statuses/update', { status: status });
 		} catch (err) {
@@ -88,8 +90,8 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 }
 
 async function retweetBestTweet(id) {
-	console.log('Running Best Retweet Function');
-	console.log('this is the  retweet id: ' + id);
+	console.log('Running Best Retweet Function.');
+	console.log('Best retweet id: ' + id);
 	try {
 		const { data } = await user.post('statuses/retweet/' + id);
 	} catch (err) {

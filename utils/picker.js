@@ -29,24 +29,24 @@ let randomUserList5 = userGroup5[Math.floor(userGroup5.length * Math.random())];
 
 //pick random user list based on mode value and return result
 const pickRandomUserList = function () {
-	console.log('Running function to pick random user list');
+	console.log('Running function to pick random user list.');
 	let mode = Math.random();
 	let userList;
 	if (mode > 0 && mode <= 0.2) {
 		userList = randomUserList1;
-		console.log('Picking random user list from group 1');
+		console.log('Picking random user list from group 1.');
 	} else if (mode > 0.2 && mode <= 0.4) {
 		userList = randomUserList2;
-		console.log('Picking random user list from group 2');
+		console.log('Picking random user list from group 2.');
 	} else if (mode > 0.4 && mode <= 0.6) {
 		userList = randomUserList3;
-		console.log('Picking random user list from group 3');
+		console.log('Picking random user list from group 3.');
 	} else if (mode > 0.6 && mode <= 0.8) {
 		userList = randomUserList4;
-		console.log('Picking random user list from group 4');
+		console.log('Picking random user list from group 4.');
 	} else {
 		userList = randomUserList5;
-		console.log('Picking random user list from group 5');
+		console.log('Picking random user list from group 5.');
 	}
 	console.log('Winning user list has the following names: ' + userList);
 	return userList;
@@ -54,7 +54,7 @@ const pickRandomUserList = function () {
 
 // pick random comment
 const pickRandomComment = function (user) {
-	console.log('Running function to pick random comment for status');
+	console.log('Running function to pick random comment for status.');
 	// set array of comments
 	let comments = [
 		user + ' shared the following post...',

@@ -2,52 +2,46 @@
 require('dotenv').config();
 
 //declare user lists from .env
-const FIRST_USER_LIST = process.env['FIRST_USER_LIST'];
-const SECOND_USER_LIST = process.env['SECOND_USER_LIST'];
-const THIRD_USER_LIST = process.env['THIRD_USER_LIST'];
-const FOURTH_USER_LIST = process.env['FOURTH_USER_LIST'];
-const FIFTH_USER_LIST = process.env['FIFTH_USER_LIST'];
-const SIXTH_USER_LIST = process.env['SIXTH_USER_LIST'];
-const SEVENTH_USER_LIST = process.env['SEVENTH_USER_LIST'];
-const EIGHTH_USER_LIST = process.env['EIGHTH_USER_LIST'];
-const NINTH_USER_LIST = process.env['NINTH_USER_LIST'];
-const TENTH_USER_LIST = process.env['TENTH_USER_LIST'];
+const userList01 = process.env['USER_LIST_01'];
+const userList02 = process.env['USER_LIST_02'];
+const userList03 = process.env['USER_LIST_03'];
+const userList04 = process.env['USER_LIST_04'];
+const userList05 = process.env['USER_LIST_05'];
+const userList06 = process.env['USER_LIST_06'];
+const userList07 = process.env['USER_LIST_07'];
+const userList08 = process.env['USER_LIST_08'];
+const userList09 = process.env['USER_LIST_09'];
+const userList10 = process.env['USER_LIST_10'];
+const userList11 = process.env['USER_LIST_11'];
+const userList12 = process.env['USER_LIST_12'];
+const userList13 = process.env['USER_LIST_13'];
 
-//declare user group arrays
-let userGroup1 = [FIRST_USER_LIST, SIXTH_USER_LIST];
-let userGroup2 = [SECOND_USER_LIST, SEVENTH_USER_LIST];
-let userGroup3 = [NINTH_USER_LIST, FIFTH_USER_LIST];
-let userGroup4 = [EIGHTH_USER_LIST, FOURTH_USER_LIST];
-let userGroup5 = [THIRD_USER_LIST, TENTH_USER_LIST];
+//user list pool
+const userListPool = [
+	userList01,
+	userList02,
+	userList03,
+	userList04,
+	userList05,
+	userList06,
+	userList07,
+	userList08,
+	userList09,
+	userList10,
+	userList11,
+	userList12,
+	userList13,
+];
 
-//randomize user list selection from user group arrays
-let randomUserList1 = userGroup1[Math.floor(userGroup1.length * Math.random())];
-let randomUserList2 = userGroup2[Math.floor(userGroup2.length * Math.random())];
-let randomUserList3 = userGroup3[Math.floor(userGroup3.length * Math.random())];
-let randomUserList4 = userGroup4[Math.floor(userGroup4.length * Math.random())];
-let randomUserList5 = userGroup5[Math.floor(userGroup5.length * Math.random())];
+//randomize user list selection from user list pool
+let randomuserList =
+	userListPool[Math.floor(userListPool.length * Math.random())];
 
 //pick random user list based on mode value and return result
 const pickRandomUserList = function () {
 	console.log('Running function to pick random user list.');
-	let mode = Math.random();
 	let userList;
-	if (mode > 0 && mode <= 0.2) {
-		userList = randomUserList1;
-		console.log('Picking random user list from group 1.');
-	} else if (mode > 0.2 && mode <= 0.4) {
-		userList = randomUserList2;
-		console.log('Picking random user list from group 2.');
-	} else if (mode > 0.4 && mode <= 0.6) {
-		userList = randomUserList3;
-		console.log('Picking random user list from group 3.');
-	} else if (mode > 0.6 && mode <= 0.8) {
-		userList = randomUserList4;
-		console.log('Picking random user list from group 4.');
-	} else {
-		userList = randomUserList5;
-		console.log('Picking random user list from group 5.');
-	}
+	userList = randomuserList;
 	console.log('Winning user list has the following names: ' + userList);
 	return userList;
 };

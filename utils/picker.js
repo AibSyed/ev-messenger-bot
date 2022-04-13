@@ -34,14 +34,14 @@ const userListPool = [
 ];
 
 //randomize user list selection from user list pool
-let randomuserList =
+let randomUserList =
 	userListPool[Math.floor(userListPool.length * Math.random())];
 
 //pick random user list based on mode value and return result
 const pickRandomUserList = function () {
 	console.log('Running function to pick random user list.');
 	let userList;
-	userList = randomuserList;
+	userList = randomUserList;
 	console.log('Winning user list has the following names: ' + userList);
 	return userList;
 };

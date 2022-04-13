@@ -39,10 +39,10 @@ async function botScript() {
 	const fullQuery =
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
-	let pastTenMinutes = new Date();
+	let currentDate = new Date();
 	let reducedMinutes = 2.5;
-	pastTenMinutes.setDate(pastTenMinutes.getDate());
-	pastTenMinutes.setMinutes(pastTenMinutes.getMinutes() - reducedMinutes);
+	currentDate.setDate(currentDate.getDate());
+	currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);
 
 	let params = {
 		start_time: pastTenMinutes.toISOString(),

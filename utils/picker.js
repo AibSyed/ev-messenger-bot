@@ -12,44 +12,45 @@ const userList07 = process.env['USER_LIST_07'];
 const userList08 = process.env['USER_LIST_08'];
 const userList09 = process.env['USER_LIST_09'];
 const userList10 = process.env['USER_LIST_10'];
-const userList11 = process.env['USER_LIST_11'];
-const userList12 = process.env['USER_LIST_12'];
-const userList13 = process.env['USER_LIST_13'];
-
-//declare user group arrays
-let userGroup1 = [userList01, userList03, userList12];
-let userGroup2 = [userList02, userList04];
-let userGroup3 = [userList07, userList09, userList13];
-let userGroup4 = [userList08, userList10, userList11];
-let userGroup5 = [userList05, userList06];
-
-//randomize user list selection from user group arrays
-let randomUserList1 = userGroup1[Math.floor(userGroup1.length * Math.random())];
-let randomUserList2 = userGroup2[Math.floor(userGroup2.length * Math.random())];
-let randomUserList3 = userGroup3[Math.floor(userGroup3.length * Math.random())];
-let randomUserList4 = userGroup4[Math.floor(userGroup4.length * Math.random())];
-let randomUserList5 = userGroup5[Math.floor(userGroup5.length * Math.random())];
 
 //pick random user list based on mode value and return result
 const pickRandomUserList = function () {
 	console.log('Running function to pick random user list.');
 	let mode = Math.random();
 	let userList;
-	if (mode > 0 && mode <= 0.2) {
-		userList = randomUserList1;
-		console.log('Picking random user list from group 1.');
-	} else if (mode > 0.2 && mode <= 0.4) {
-		userList = randomUserList2;
-		console.log('Picking random user list from group 2.');
-	} else if (mode > 0.4 && mode <= 0.6) {
-		userList = randomUserList3;
-		console.log('Picking random user list from group 3.');
-	} else if (mode > 0.6 && mode <= 0.8) {
-		userList = randomUserList4;
-		console.log('Picking random user list from group 4.');
+	if (mode >= 0 && mode < 0.1) {
+		userList = userList01;
+		console.log('Picking random user from user list 1.');
+	} else if (mode >= 0.1 && mode < 0.2) {
+		userList = userList02;
+		console.log('Picking random user from user list 2.');
+	} else if (mode >= 0.2 && mode < 0.3) {
+		userList = userList03;
+		console.log('Picking random user from user list 3.');
+	} else if (mode >= 0.3 && mode < 0.4) {
+		userList = userList04;
+		console.log('Picking random user from user list 4.');
+	} else if (mode >= 0.4 && mode < 0.5) {
+		userList = userList05;
+		console.log('Picking random user from user list 5.');
+	} else if (mode >= 0.5 && mode < 0.6) {
+		userList = userList06;
+		console.log('Picking random user from user list 6.');
+	} else if (mode >= 0.6 && mode < 0.7) {
+		userList = userList07;
+		console.log('Picking random user from user list 7.');
+	} else if (mode >= 0.7 && mode < 0.8) {
+		userList = userList08;
+		console.log('Picking random user from user list 8.');
+	} else if (mode >= 0.8 && mode < 0.9) {
+		userList = userList09;
+		console.log('Picking random user from user list 9.');
+	} else if (mode >= 0.9 && mode < 1) {
+		userList = userList10;
+		console.log('Picking random user from user list 10.');
 	} else {
-		userList = randomUserList5;
-		console.log('Picking random user list from group 5.');
+		userList = userList01;
+		console.log('Picking random user list from group 1.');
 	}
 	console.log('Winning user list has the following names: ' + userList);
 	return userList;

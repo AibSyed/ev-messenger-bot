@@ -40,7 +40,7 @@ async function botScript() {
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
 	let currentDate = new Date();
-	let reducedMinutes = 1.5;
+	let reducedMinutes = 2.5;
 	currentDate.setDate(currentDate.getDate());
 	currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);
 

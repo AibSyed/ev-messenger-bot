@@ -45,7 +45,7 @@ async function botScript() {
 	currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);
 
 	let params = {
-		start_time: pastTenMinutes.toISOString(),
+		start_time: currentDate.toISOString(),
 		max_results: 15,
 		'tweet.fields': 'public_metrics',
 		expansions: 'author_id',

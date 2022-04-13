@@ -1,47 +1,14 @@
 //dependencies
 require('dotenv').config();
 
-//declare user lists from .env
-const userList01 = process.env['USER_LIST_01'];
-const userList02 = process.env['USER_LIST_02'];
-const userList03 = process.env['USER_LIST_03'];
-const userList04 = process.env['USER_LIST_04'];
-const userList05 = process.env['USER_LIST_05'];
-const userList06 = process.env['USER_LIST_06'];
-const userList07 = process.env['USER_LIST_07'];
-const userList08 = process.env['USER_LIST_08'];
-const userList09 = process.env['USER_LIST_09'];
-const userList10 = process.env['USER_LIST_10'];
-const userList11 = process.env['USER_LIST_11'];
-const userList12 = process.env['USER_LIST_12'];
-const userList13 = process.env['USER_LIST_13'];
-
-//user list pool
-const userListPool = [
-	userList01,
-	userList02,
-	userList03,
-	userList04,
-	userList05,
-	userList06,
-	userList07,
-	userList08,
-	userList09,
-	userList10,
-	userList11,
-	userList12,
-	userList13,
-];
-
-//randomize user list selection from user list pool
-let randomUserList =
-	userListPool[Math.floor(userListPool.length * Math.random())];
+//declare user list from .env
+const mainUserList = process.env['USER_LIST'];
 
 //pick random user list based on mode value and return result
 const pickRandomUserList = function () {
 	console.log('Running function to pick random user list.');
 	let userList;
-	userList = randomUserList;
+	userList = mainUserList;
 	console.log('Winning user list has the following names: ' + userList);
 	return userList;
 };

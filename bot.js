@@ -40,13 +40,13 @@ async function botScript() {
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
 	let currentDate = new Date();
-	let reducedMinutes = 2.5;
+	let reducedMinutes = 6;
 	currentDate.setDate(currentDate.getDate());
 	currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);
 
 	let params = {
 		start_time: currentDate.toISOString(),
-		max_results: 15,
+		max_results: 25,
 		'tweet.fields': 'public_metrics',
 		expansions: 'author_id',
 		'user.fields': 'id,username',
@@ -99,5 +99,5 @@ async function retweetBestTweet(id) {
 	}
 }
 
-//run every 1.5 minutes
-setInterval(botScript, 90000);
+//run every 3 minutes
+setInterval(botScript, 180000);

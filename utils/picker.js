@@ -12,47 +12,35 @@ const userList07 = process.env['USER_LIST_07'];
 const userList08 = process.env['USER_LIST_08'];
 const userList09 = process.env['USER_LIST_09'];
 const userList10 = process.env['USER_LIST_10'];
+const userList11 = process.env['USER_LIST_11'];
+const userList12 = process.env['USER_LIST_12'];
 
-//pick random user list based on mode value and return result
+// Create an array of user lists
+const userLists = [
+	userList01,
+	userList02,
+	userList03,
+	userList04,
+	userList05,
+	userList06,
+	userList07,
+	userList08,
+	userList09,
+	userList10,
+	userList11,
+	userList12,
+];
+
 const pickRandomUserList = function () {
 	console.log('Running function to pick random user list.');
-	let mode = Math.random();
-	let userList;
-	if (mode >= 0 && mode < 0.1) {
-		userList = userList01;
-		console.log('Picking random user from user list 1.');
-	} else if (mode >= 0.1 && mode < 0.2) {
-		userList = userList02;
-		console.log('Picking random user from user list 2.');
-	} else if (mode >= 0.2 && mode < 0.3) {
-		userList = userList03;
-		console.log('Picking random user from user list 3.');
-	} else if (mode >= 0.3 && mode < 0.4) {
-		userList = userList04;
-		console.log('Picking random user from user list 4.');
-	} else if (mode >= 0.4 && mode < 0.5) {
-		userList = userList05;
-		console.log('Picking random user from user list 5.');
-	} else if (mode >= 0.5 && mode < 0.6) {
-		userList = userList06;
-		console.log('Picking random user from user list 6.');
-	} else if (mode >= 0.6 && mode < 0.7) {
-		userList = userList07;
-		console.log('Picking random user from user list 7.');
-	} else if (mode >= 0.7 && mode < 0.8) {
-		userList = userList08;
-		console.log('Picking random user from user list 8.');
-	} else if (mode >= 0.8 && mode < 0.9) {
-		userList = userList09;
-		console.log('Picking random user from user list 9.');
-	} else if (mode >= 0.9 && mode < 1) {
-		userList = userList10;
-		console.log('Picking random user from user list 10.');
-	} else {
-		userList = userList01;
-		console.log('Picking random user list from group 1.');
-	}
-	console.log('Winning user list has the following names: ' + userList);
+	console.log(`Total number of user lists: ${userLists.length}`);
+	//Select a random index from 0 to the number of user lists
+	const randomIndex = Math.floor(Math.random() * userLists.length);
+	console.log(`Random index selected: ${randomIndex}`);
+	//Get user list based on the selected random index
+	const userList = userLists[randomIndex];
+	console.log(`Picking random user from user list ${randomIndex + 1}.`);
+	console.log(`Winning user list has the following names: ${userList}`);
 	return userList;
 };
 
@@ -71,7 +59,7 @@ const pickRandomComment = function (user) {
 		"Here's what " + user + ' has been up to:',
 		'What are your thoughts on this post from ' + user + '?',
 		'Another EV update from ' + user + '!',
-		"If you haven't aleady, give " + user + ' a follow for more great posts!',
+		"If you haven't already, give " + user + ' a follow for more great posts!',
 		'Another great post from ' + user,
 		'Boom, another EV post 💥',
 		'I am the most electrifying man in Tweet entertainment!⚡⚡⚡- Make sure you check out this post from ' +
@@ -82,7 +70,57 @@ const pickRandomComment = function (user) {
 			user +
 			'.',
 		"Here's another post for my followers. - For those that don't follow me, what are you waiting for?",
-		"I've got the plug ⚡. Check out this post from " + user,
+		"I've got the plug 🔌. Check out this post from " + user,
+		'Looks like ' +
+			user +
+			' just got struck by my lightning bolt of knowledge with their latest post ⚡⚡⚡!',
+		'I must have whispered some secrets of the EV industry in ' +
+			user +
+			"'s ear, because their latest post is 🔥",
+		'Check out this enlightening post from ' +
+			user +
+			" on the EV market, it's like they were struck by my lightning of knowledge. ☁️⚡",
+		"I can't stop thinking about this post from " +
+			user +
+			', they must have been blessed by my infinite wisdom.  ☁️⚡',
+		"If you're not following " +
+			user +
+			' yet, I must not have deemed you worthy of their EV insights.',
+		'Just stumbled upon a post from ' + user + ' that I approve of.',
+		'This post from ' +
+			user +
+			' on the latest EV developments is like a gift from me.',
+		"I'm loving the unique perspective on the EV industry in this post from " +
+			user +
+			'.',
+		'Looking for some inspiration on the latest EV developments? Check out this post from ' +
+			user +
+			'.',
+		"I've been following " +
+			user +
+			' for a while now and they never disappoint!',
+		'I always keep an eye out for interesting posts on the EV market and this one from ' +
+			user +
+			' caught my attention.',
+		"If you're interested in the latest EV developments, this post from " +
+			user +
+			' is worth a look.',
+		'This post from ' +
+			user +
+			' on the EV market caught my attention and I think it might be of interest to you as well.',
+		'I came across this post from ' +
+			user +
+			" and I think it's worth sharing. Check it out!",
+		"I've been following the EV market for a while now, and this post from " +
+			user +
+			' is 👌',
+		"As an EV enthusiast, I couldn't resist sharing this post from " +
+			user +
+			'.',
+		'This post from ' + user + ' caught my attention.',
+		'As someone who has a keen interest in the EV industry, I thought this post from ' +
+			user +
+			' is worth sharing.',
 	];
 	//select random comments based on length of comments array
 	let randomComment = comments[Math.floor(comments.length * Math.random())];

@@ -14,6 +14,7 @@ const userList09 = process.env['USER_LIST_09'];
 const userList10 = process.env['USER_LIST_10'];
 const userList11 = process.env['USER_LIST_11'];
 const userList12 = process.env['USER_LIST_12'];
+const userList13 = process.env['USER_LIST_13'];
 
 // Create an array of user lists
 const userLists = [
@@ -29,6 +30,7 @@ const userLists = [
 	userList10,
 	userList11,
 	userList12,
+	userList13,
 ];
 
 const pickRandomUserList = function () {

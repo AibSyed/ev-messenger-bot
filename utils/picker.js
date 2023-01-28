@@ -38,10 +38,9 @@ const pickRandomUserList = function () {
 	console.log(`Total number of user lists: ${userLists.length}`);
 	//Select a random index from 0 to the number of user lists
 	const randomIndex = Math.floor(Math.random() * userLists.length);
-	console.log(`Random index selected: ${randomIndex}`);
+	console.log(`Picking random user list.`);
 	//Get user list based on the selected random index
 	const userList = userLists[randomIndex];
-	console.log(`Picking random user from user list ${randomIndex + 1}.`);
 	console.log(`Winning user list has the following names: ${userList}`);
 	return userList;
 };

@@ -1,4 +1,4 @@
-console.log('Bot is running...');
+console.log('Bot is active...');
 
 //import dependencies
 require('dotenv').config();
@@ -77,12 +77,9 @@ async function botScript() {
 	console.log('API call result : ', meta.result_count);
 	//Check if there are any matching results
 	if (meta.result_count > 0) {
-		//Get the best tweet and user from the results
+		// Get the best tweet from the matching results using helper function
 		const { bestTweetId, bestTweetUser, bestTweetPoints } =
 			helper.getBestTweet(data);
-		console.log(
-			`Found ${meta.result_count} results that match criteria, determining best tweet with Id: ${bestTweetId}, Author: ${bestTweetUser} and Score: ${bestTweetPoints}`
-		);
 
 		//Check if the tweet has already been posted
 		if (tweetIds.hasTweetId(bestTweetId)) {
@@ -91,7 +88,13 @@ async function botScript() {
 			);
 			return;
 		}
-		//Determine if the bot will quote tweet or retweet the best tweet
+
+		// Log the details of the best tweet
+		console.log(
+			`Found ${meta.result_count} results that match criteria, determining best tweet with Id: ${bestTweetId}, Author: ${bestTweetUser} and Score: ${bestTweetPoints}`
+		);
+
+		// Randomly decide to either quote tweet or retweet the best tweet
 		if (Math.random() > 0.1) {
 			console.log(
 				`Tweet with ID ${bestTweetId} has been selected for a quote tweet.`
@@ -103,7 +106,8 @@ async function botScript() {
 			);
 			retweetBestTweet(bestTweetId);
 		}
-		//Add the tweet ID to the list of posted tweets
+
+		// Add the tweet ID to the list of posted tweets
 		tweetIds.addTweetId(bestTweetId);
 	} else {
 		console.log('No results to display at this time.');

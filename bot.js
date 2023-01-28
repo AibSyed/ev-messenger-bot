@@ -45,7 +45,7 @@ async function botScript() {
 	let currentDate = new Date();
 
 	//Reduce the minutes by 6
-	let reducedMinutes = 600;
+	let reducedMinutes = 60;
 
 	//Subtract the reduced minutes from the current time
 	currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);

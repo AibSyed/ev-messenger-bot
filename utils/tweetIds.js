@@ -1,5 +1,5 @@
 const tweetIds = [];
-const limit = 20; // Maximum limit for tweetIds array
+const limit = 100; // Maximum limit for tweetIds array
 
 const addTweetId = (id) => {
 	// Check if the tweetIds array has reached the maximum limit

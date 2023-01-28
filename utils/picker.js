@@ -46,7 +46,13 @@ const pickRandomUserList = function () {
 	return userList;
 };
 
-// pick random comment
+// array to store selected comments from pickRandomComment function
+let selectedComments = [];
+
+// limit of comments
+const commentLimit = 3;
+
+// function to pick a random comment from the list of comments
 const pickRandomComment = function (user) {
 	console.log('Running function to pick random comment for status.');
 	// set array of comments
@@ -126,7 +132,21 @@ const pickRandomComment = function (user) {
 	];
 	//select random comments based on length of comments array
 	let randomComment = comments[Math.floor(comments.length * Math.random())];
-
+	// check if selectedComment length is equal to the limit
+	if (selectedComments.length === commentLimit) {
+		console.log(
+			`Limit of ${commentLimit} comments reached, resetting selected comments`
+		);
+		selectedComments = []; // reset the array
+	}
+	// check if the randomly selected comment is already in the array
+	if (selectedComments.includes(randomComment)) {
+		console.log(`Comment already selected, picking new comment`);
+		return pickRandomComment(user); // recursively call the function to select a new comment
+	}
+	// add the comment to the selectedComments array
+	selectedComments.push(randomComment);
+	console.log(`Number of comments stored: ${selectedComments.length}`);
 	return randomComment;
 };
 

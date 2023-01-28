@@ -36,7 +36,6 @@ async function botScript() {
 	console.log('Bot script has started.');
 	//Get a list of chosen users by invoking the pickRandomUserList function from picker.js
 	let userList = picker.pickRandomUserList();
-
 	//Build the query string using the chosen user list and excluding replies and retweets
 	const fullQuery =
 		'(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
@@ -70,17 +69,19 @@ async function botScript() {
 	};
 
 	//Make the API call and destructure the response
+	console.log('Making API call with parameters: ', params);
 	const { meta, data, includes } = await app.get(
 		'tweets/search/recent',
 		params
 	);
-
+	console.log('API call result : ', meta.result_count);
 	//Check if there are any matching results
 	if (meta.result_count > 0) {
 		//Get the best tweet and user from the results
-		const { bestTweetId, bestTweetUser } = helper.getBestTweet(data);
+		const { bestTweetId, bestTweetUser, bestTweetPoints } =
+			helper.getBestTweet(data);
 		console.log(
-			'Found results that match criteria, determining whether to quote tweet, or retweet.'
+			`Found ${meta.result_count} results that match criteria, determining best tweet with Id: ${bestTweetId}, Author: ${bestTweetUser} and Score: ${bestTweetPoints}`
 		);
 
 		//Check if the tweet has already been posted
@@ -92,14 +93,20 @@ async function botScript() {
 		}
 		//Determine if the bot will quote tweet or retweet the best tweet
 		if (Math.random() > 0.1) {
+			console.log(
+				`Tweet with ID ${bestTweetId} has been selected for a quote tweet.`
+			);
 			quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
 		} else {
+			console.log(
+				`Tweet with ID ${bestTweetId} has been selected for a retweet.`
+			);
 			retweetBestTweet(bestTweetId);
 		}
 		//Add the tweet ID to the list of posted tweets
 		tweetIds.addTweetId(bestTweetId);
 	} else {
-		console.log('No matching results to display at this time.');
+		console.log('No results to display at this time.');
 	}
 }
 

@@ -130,7 +130,7 @@ async function retweetBestTweet(id) {
 	try {
 		const { data } = await user.post(`statuses/retweet/${id}`);
 		console.log(`Retweeted tweet with ID: ${id}`);
-		tweetIds.tweetIds.addTweetId(id);
+		tweetIds.addTweetId(id);
 		//Log any error that may occur
 	} catch (err) {
 		console.log(`Error occurred while trying to retweet tweet with ID: ${id}`);

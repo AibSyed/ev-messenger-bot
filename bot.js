@@ -7,7 +7,7 @@ const TwitterLite = require('twitter-lite');
 //Import utilities
 const helper = require('./utils/helper.js');
 const picker = require('./utils/picker.js');
-const tweetIds = require('./utils/tweetIds.js');
+const tweetIdStorage = require('./utils/tweetIdStorage.js');
 
 //Declare twitter auth vars from env
 const TWITTER_ACCESS_TOKEN_SECRET = process.env['TWITTER_ACCESS_TOKEN_SECRET'];
@@ -82,7 +82,7 @@ async function botScript() {
 			helper.getBestTweet(data);
 
 		//Check if the tweet has already been posted
-		if (tweetIds.hasTweetId(bestTweetId)) {
+		if (tweetIdStorage.hasTweetId(bestTweetId)) {
 			console.log(
 				`Tweet with ID ${bestTweetId} has already been posted. Skipping...`
 			);
@@ -108,7 +108,7 @@ async function botScript() {
 		}
 
 		// Add the tweet ID to the list of posted tweets
-		tweetIds.addTweetId(bestTweetId);
+		tweetIdStorage.addTweetId(bestTweetId);
 	} else {
 		console.log('No results to display at this time.');
 	}
@@ -128,8 +128,9 @@ async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {
 		console.log(`Tweeting the following status for ${username}: ${status}`);
 		try {
 			const { data } = await user.post('statuses/update', { status: status });
+			console.log('Quote tweet successful');
 		} catch (err) {
-			console.log(err);
+			console.log(`Error occurred while trying to quote tweet: ${err.message}`);
 		}
 	}
 }
@@ -141,11 +142,9 @@ async function retweetBestTweet(id) {
 	try {
 		const { data } = await user.post(`statuses/retweet/${id}`);
 		console.log(`Retweeted tweet with ID: ${id}`);
-		tweetIds.addTweetId(id);
-		//Log any error that may occur
 	} catch (err) {
 		console.log(`Error occurred while trying to retweet tweet with ID: ${id}`);
-		console.log(err);
+		console.log(`Error message: ${err.message}`);
 	}
 }
 

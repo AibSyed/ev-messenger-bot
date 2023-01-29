@@ -57,7 +57,7 @@ async function botScript() {
 		//Pass the ISO String representation of the date object
 		start_time: searchStartTime,
 		//Set the maximum number of results to be returned
-		max_results: 50,
+		max_results: 15,
 		//Select the specific tweet fields to be returned
 		'tweet.fields': 'public_metrics',
 		//Expand the author_id field to get additional information

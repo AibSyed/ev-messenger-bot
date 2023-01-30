@@ -31,61 +31,60 @@ const user = new TwitterLite({
     consumer_secret: TWITTER_API_SECRET,
 });
 
-//Main script
 async function botScript() {
+    // Bot script has started
     console.log('Bot script has started.');
-    //Get a list of chosen users by invoking the pickRandomUserList function from picker.js
+
+    // Pick a random user list from picker
     let userList = picker.pickRandomUserList();
-    //Build the query string using the chosen user list and excluding replies and retweets
-    const fullQuery =
-        '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
 
-    //Create a new Date object
+    // Create a full query string with helper.getFromClauses and remove reply and retweet tweets from the result
+    const fullQuery = '(' + helper.getFromClauses(userList) + ') -is:reply -is:retweet';
+
+    // Set the current date and reduce the minutes by 60
     let currentDate = new Date();
-
-    //Reduce the minutes by 6
     let reducedMinutes = 60;
-
-    //Subtract the reduced minutes from the current time
     currentDate.setMinutes(currentDate.getMinutes() - reducedMinutes);
 
-    //Convert the Date object to ISO String format
+    // Get the search start time as ISO string
     let searchStartTime = currentDate.toISOString();
 
-    //Set the parameters for the Twitter API call
+    // Set the parameters for the API call with tweet fields, expansions, user fields, query and time
     let params = {
-        //Pass the ISO String representation of the date object
         start_time: searchStartTime,
-        //Set the maximum number of results to be returned
         max_results: 15,
-        //Select the specific tweet fields to be returned
         'tweet.fields': 'public_metrics',
-        //Expand the author_id field to get additional information
         expansions: 'author_id',
-        //Select the specific user fields to be returned
         'user.fields': 'id,username',
-        //Pass the full query string
         query: fullQuery,
     };
 
-    //Make the API call and destructure the response
+    // Log the parameters being used for the API call
     console.log('Making API call with parameters: ', params);
+
+    // Initialize the meta variable
+    let meta = null;
+
+    // Try making the API call and catch any errors
     try {
-        const { meta, data, includes } = await app.get('tweets/search/recent', params);
-        console.log('API call result : ', meta.result_count);
-        //Check if there are any matching results
-        //...
+        const { meta: responseMeta, data, includes } = await app.get('tweets/search/recent', params);
+        console.log('API call result : ', responseMeta.result_count);
+        meta = responseMeta;
     } catch (err) {
         console.log(err);
     }
+
+    // Log the result count from the API call
     console.log('API call result : ', meta.result_count);
-    //Check if there are any matching results
+
+    // If the result count is greater than 0
     if (meta.result_count > 0) {
-        // Get the best tweet from the matching results using helper function
+
+        // Get the best tweet with helper.getBestTweet
         const { bestTweetId, bestTweetUser, bestTweetPoints } =
             helper.getBestTweet(data);
 
-        //Check if the tweet has already been posted
+        // Check if the tweet has already been posted
         if (tweetIdStorage.hasTweetId(bestTweetId)) {
             console.log(
                 `Tweet with ID ${bestTweetId} has already been posted. Skipping...`
@@ -93,30 +92,34 @@ async function botScript() {
             return;
         }
 
-        // Log the details of the best tweet
+        // Log the best tweet information
         console.log(
             `Found ${meta.result_count} results that match criteria, determining best tweet with Id: ${bestTweetId}, Author: ${bestTweetUser} and Score: ${bestTweetPoints}`
         );
 
-        // Randomly decide to either quote tweet or retweet the best tweet
+        // If a random number is greater than 0.1, quote tweet the best tweet
         if (Math.random() > 0.1) {
             console.log(
                 `Tweet with ID ${bestTweetId} has been selected for a quote tweet.`
             );
             quoteTweetBestTweet(bestTweetId, bestTweetUser, includes);
         } else {
+            // Otherwise, retweet the best tweet
             console.log(
                 `Tweet with ID ${bestTweetId} has been selected for a retweet.`
             );
             retweetBestTweet(bestTweetId);
         }
 
-        // Add the tweet ID to the list of posted tweets
+        // Add the tweet id to the storage
         tweetIdStorage.addTweetId(bestTweetId);
     } else {
+        // If there are no results from the API call, log a message to indicate no results were found
         console.log('No results to display at this time.');
     }
 }
+
+
 
 //Function for quoting the best tweet
 async function quoteTweetBestTweet(bestTweetId, bestTweetUser, includes) {

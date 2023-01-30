@@ -43,7 +43,7 @@ async function botScript() {
 	//Create a new Date object
 	let currentDate = new Date();
 
-	//Reduce the minutes by 6
+	//Reduce the minutes by 60
 	let reducedMinutes = 60;
 
 	//Subtract the reduced minutes from the current time
@@ -54,10 +54,10 @@ async function botScript() {
 
 	//Set the parameters for the Twitter API call
 	let params = {
-		//Pass the ISO String representation of the date object
+		//Pass the ISO String representation of the date object as start_time
 		start_time: searchStartTime,
 		//Set the maximum number of results to be returned
-		max_results: 50,
+		max_results: 15,
 		//Select the specific tweet fields to be returned
 		'tweet.fields': 'public_metrics',
 		//Expand the author_id field to get additional information
@@ -148,5 +148,5 @@ async function retweetBestTweet(id) {
 	}
 }
 
-//Run every 2.5 minutes
-setInterval(botScript, 150000);
+//Run every 15 minutes
+setInterval(botScript, 900000);

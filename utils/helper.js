@@ -54,31 +54,27 @@ const getFromClauses = function (userList) {
 // function that creates a tweet status string
 const getStatus = function (tweetId, user) {
 	console.log('Creating tweet status...');
-	// use a helper function to pick a random comment from a predefined list
-	const randomComment = picker.pickRandomComment(user);
-	// construct the final status string by concatenating the comment, a newline character and a link to the tweet
-	const status = `${randomComment}\nhttps://twitter.com/${user}/status/${tweetId}`;
-	console.log(`Tweet status: ${status}`);
-	// return the final status string
-	return status;
+	// return a string that includes a random comment and a link to the tweet
+	return (
+		picker.pickRandomComment(user) +
+		'\nhttps://twitter.com/' +
+		user +
+		'/status/' +
+		tweetId
+	);
 };
 
 // function that gets a username from a user ID
 const getUsernameFromId = function (users, id) {
-	// Log that we are starting to search for the username
 	console.log('Getting username from user ID...');
-	// Loop through the users array
-	for (const user of users) {
-		// Check if the current user's id matches the input id
-		if (user.id === id) {
-			console.log(`Username for ID ${id} is ${user.username}`);
-			// Return the username if the id matches
-			return user.username;
+	// loop through the users and check the id
+	for (const user in users) {
+		obj = users[user];
+		if (obj.id === id) {
+			// return the username if the id matches
+			return obj.username;
 		}
 	}
-	console.log(`No username found for ID: ${id}`);
-	// return null if no username is found
-	return null;
 };
 
 // export the functions for use in other modules

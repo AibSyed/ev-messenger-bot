@@ -57,7 +57,7 @@ async function botScript() {
 		//Pass the ISO String representation of the date object as start_time
 		start_time: searchStartTime,
 		//Set the maximum number of results to be returned
-		max_results: 15,
+		max_results: 50,
 		//Select the specific tweet fields to be returned
 		'tweet.fields': 'public_metrics',
 		//Expand the author_id field to get additional information
@@ -148,5 +148,5 @@ async function retweetBestTweet(id) {
 	}
 }
 
-//Run every 15 minutes
-setInterval(botScript, 900000);
+//Run every 2.5 minutes
+setInterval(botScript, 150000);

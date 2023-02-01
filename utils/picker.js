@@ -56,7 +56,7 @@ let selectedComments = [];
 const commentLimit = 10;
 
 // function to pick a random comment from the list of comments
-const pickRandomComment = function (user) {
+const pickRandomComment = function () {
 	console.log('Running function to pick random comment for status.');
 	// set array of comments
 	let comments = [

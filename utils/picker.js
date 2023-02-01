@@ -76,6 +76,9 @@ const pickRandomComment = function (user) {
 	let randomIndex = Math.floor(Math.random() * comments.length);
 	let selectedComment = comments[randomIndex];
 
+	// substitute the user name into the comment string
+	selectedComment = selectedComment.replace('user', user);
+
 	// Remove the selected comment from the comments array
 	comments.splice(randomIndex, 1);
 

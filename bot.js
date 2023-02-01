@@ -31,6 +31,12 @@ const user = new TwitterLite({
 	consumer_secret: TWITTER_API_SECRET,
 });
 
+async function getBotTweets() {
+	const params = { screen_name: 'your_bot_screen_name', count: 200 };
+	const tweets = await client.get('statuses/user_timeline', params);
+	console.log(tweets);
+}
+
 //Main script
 async function botScript() {
 	console.log('Bot script has started.');

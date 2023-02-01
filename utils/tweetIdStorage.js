@@ -33,13 +33,3 @@ const hasTweetId = (id) => {
 
 exports.addTweetId = addTweetId;
 exports.hasTweetId = hasTweetId;
-
-// Add tweet IDs to the tweetIds array
-for (let i = 1; i <= 105; i++) {
-	addTweetId(i);
-}
-
-// Check if a tweet ID is present in the tweetIds array
-console.log(hasTweetId(5)); // Output: true
-console.log(hasTweetId(105)); // Output: true
-console.log(hasTweetId(106)); // Output: false

@@ -59,7 +59,7 @@ let selectedComments = [];
 const comments = tweetComments;
 
 // Function to pick a random comment from the list of comments
-const pickRandomComment = function () {
+const pickRandomComment = function (user) {
 	console.log('Running function to pick random comment for status.');
 	// Check if all comments have been used
 	if (comments.length === 0) {

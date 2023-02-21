@@ -4,7 +4,7 @@ const picker = require('./picker.js');
 const getBestTweet = function (data) {
 	console.log('Calculating best tweet...');
 	// Initialize variables to track the best tweet
-	let bestTweet = { id: 0, author_id: '', score: 0 };
+	let bestTweet = { id: 0, author_id: '', score: 25 };
 
 	// Loop through the tweets and calculate the score for each one
 	for (let i = 0; i < data.length; i++) {

@@ -81,7 +81,7 @@ const pickRandomComment = function (user) {
 		'Just stumbled upon a great post from ' + user + ', check it out!',
 		'Looking for some inspiration on the latest EV developments? Give ' +
 			user +
-			'a follow! Here is their latest post:',
+			' a follow! Here is their latest post:',
 		'I always keep an eye out for interesting posts on the EV market and this one from ' +
 			user +
 			' caught my attention:',

@@ -154,5 +154,5 @@ async function retweetBestTweet(id) {
 	}
 }
 
-//Run every 2.5 minutes
-setInterval(botScript, 150000);
+//Run every hour
+setInterval(botScript, 3600000);

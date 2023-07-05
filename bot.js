@@ -86,7 +86,7 @@ async function botScript() {
 			console.log('No results to display at this time.');
 		}
 	} catch (error) {
-		console.error(`Error occurred while trying to make API call: ${error.message}`);
+		console.error('An error occurred:', error);
 	}
 }
 

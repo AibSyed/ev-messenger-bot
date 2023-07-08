@@ -123,4 +123,4 @@ async function retweetBestTweet(id) {
 }
 
 // Run every 30 seconds
-setInterval(botScript, 30000);
+setInterval(botScript, 300000000);
